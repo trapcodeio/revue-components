@@ -1,0 +1,17 @@
+{
+  "name": "revue",
+  "version": "0.1.0",
+  "description": "Vue reuseable components",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
