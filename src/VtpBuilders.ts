@@ -23,6 +23,7 @@ export type OnVtpResponseLeanFn = (data: Record<string, any>, others: {
 
 interface VtpMethods {
     $api: VtpHttpRequest
+    $vtpRequestHandler: VtpHttpRequest
 
     fetchData(): void
 
@@ -73,7 +74,9 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                     path = (path as VtpRequest).url;
                 }
 
-                this.$api!.getFrom(path as string, {}, config as any).then((res: any) => {
+                const requestHandler = this.$vtpRequestHandler? this.$vtpRequestHandler : this.$api;
+
+                requestHandler!.getFrom(path as string, {}, config as any).then((res: any) => {
                     if (this.onVtpResponse) {
                         this.onVtpResponse({
                             data: res,
