@@ -101,7 +101,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                     } else if (errorHandler) {
                         errorHandler(error);
                     } else {
-                        throw new Error(error).stack;
+                        console.error(error);
                     }
                 });
             },
