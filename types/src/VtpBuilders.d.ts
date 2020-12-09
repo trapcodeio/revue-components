@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from "axios";
 export declare type VtpRequest = {
     name?: string;
     url: string;
+    query?: Record<string, any>;
     config?: AxiosRequestConfig;
 };
 export declare type StringOrVtpRequest = string | VtpRequest | null;
