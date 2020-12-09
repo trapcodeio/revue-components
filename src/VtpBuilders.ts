@@ -2,15 +2,16 @@ import VtpHttpRequest, {VtpHttpErrorResponse} from "./VtpHttpRequest";
 import {AxiosRequestConfig} from "axios";
 
 export type VtpRequest = {
-    name?: string,
-    url: string,
+    name?: string
+    url: string
+    query?: Record<string, any>
     config?: AxiosRequestConfig
 }
 
 export type StringOrVtpRequest = string | VtpRequest | null
 export type VtpResponsePayload = {
     data: Record<string, any>
-    config: StringOrVtpRequest,
+    config: StringOrVtpRequest
     markAsLoaded(): void | any
 };
 
@@ -60,7 +61,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
         methods: {
             fetchData() {
                 let path = url;
-                let config: AxiosRequestConfig | undefined = {};
+                let config: AxiosRequestConfig & { query?: Record<string, any> } | undefined = {};
 
                 if (typeof path === "function") {
                     path = path(this);
@@ -74,9 +75,9 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                     path = (path as VtpRequest).url;
                 }
 
-                const requestHandler = this.$vtpRequestHandler? this.$vtpRequestHandler : this.$api;
+                const requestHandler = this.$vtpRequestHandler ? this.$vtpRequestHandler : this.$api;
 
-                requestHandler!.getFrom(path as string, {}, config as any).then((res: any) => {
+                requestHandler!.getFrom(path as string, config ? config.query : {}, config as any).then((res: any) => {
                     if (this.onVtpResponse) {
                         this.onVtpResponse({
                             data: res,
