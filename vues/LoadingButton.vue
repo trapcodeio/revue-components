@@ -1,30 +1,30 @@
 <template>
   <button @click.prevent="onClick" :disabled="isLoading" :class="computedButtonClass">
     <span v-if="isLoading" class="blink">
-      <i class="fad fa-spinner-third fa-spin" aria-hidden="true"></i> {{message || 'Loading'}}...</span>
+      <i class="fad fa-spinner-third fa-spin" aria-hidden="true"></i> {{ message || 'Loading' }}...</span>
     <slot v-else/>
   </button>
 </template>
 
 <script>
 export default {
-  name: "LoadingButton",
+  name: 'LoadingButton',
   model: {
     prop: 'loading',
-    event: 'on-switch'
+    event: 'on-switch',
   },
   props: {
     message: {
       type: String,
-      default: 'Loading'
+      default: 'Loading',
     },
     on: {
       type: String,
-      default: ''
+      default: '',
     },
     off: {
       type: String,
-      default: ''
+      default: '',
     },
     click: {
       type: Function,
@@ -33,26 +33,26 @@ export default {
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     data: {
       type: [Array, Object, String, Number, Boolean],
-      default: null
+      default: null,
     },
     noButtonClass: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       isLoading: false,
       buttonIsDisabled: false,
-    }
+    };
   },
   computed: {
     computedButtonClass() {
-      let $class = this.noButtonClass ? "" : "loading-button ";
+      let $class = this.noButtonClass ? '' : 'loading-button ';
       let on = this.on;
       let off = this.off;
       if (off.length && !on.length) {
@@ -64,7 +64,7 @@ export default {
         $class += this.off;
       }
       return $class;
-    }
+    },
   },
   mounted() {
     if (this.loading) {
@@ -79,16 +79,16 @@ export default {
     stopLoading(run = undefined) {
       this.isLoading = false;
       this.buttonIsDisabled = false;
-      if (run && typeof run === "function") run();
+      if (run && typeof run === 'function') run();
     },
     onClick() {
       if (!this.isLoading) {
         this.startLoading();
         return this.click(this, this.data);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
