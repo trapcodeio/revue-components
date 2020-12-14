@@ -1,6 +1,6 @@
 {
   "name": "revue-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Vue reuseable components",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
