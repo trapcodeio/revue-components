@@ -75,7 +75,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                     path = (path as VtpRequest).url;
                 }
 
-                const requestHandler = this.$vtpRequestHandler ? this.$vtpRequestHandler : this.$api;
+                const requestHandler = this.$vtpRequestHandler ? this.$vtpRequestHandler : new VtpHttpRequest();
 
                 requestHandler!.getFrom(path as string, config ? config.query : {}, config as any).then((res: any) => {
                     if (this.onVtpResponse) {
