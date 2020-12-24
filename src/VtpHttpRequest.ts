@@ -37,19 +37,30 @@ export class VtpHttpRequest {
         return this;
     }
 
-    getFrom(url: string, query?: Record<string, any>, options?: AxiosRequestConfig) {
+    private static __getQueryConfig(query?: Record<string, any>, options?: AxiosRequestConfig) {
         let config = options || {};
         if (query && !config.params) {
             config.params = query;
         }
+
+        return config;
+    }
+
+    get(url: string, query?: Record<string, any>, options?: AxiosRequestConfig) {
         return this.promisifyRequest(
-            this.axios.get(url, config)
+            this.axios.get(url, VtpHttpRequest.__getQueryConfig(query, options))
         );
     }
 
 
-    postTo(url: string, data?: any, options?: AxiosRequestConfig) {
+    delete(url: string, query?: Record<string, any>, options?: AxiosRequestConfig) {
+        return this.promisifyRequest(
+            this.axios.delete(url, VtpHttpRequest.__getQueryConfig(query, options))
+        );
+    }
 
+
+    post(url: string, data?: any, options?: AxiosRequestConfig) {
         return this.promisifyRequest(
             this.axios.post(url, data, options)
         );

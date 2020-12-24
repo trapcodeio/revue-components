@@ -1,9 +1,9 @@
 {
   "name": "revue-components",
   "version": "0.1.5",
-  "description": "Vue reuseable components",
+  "description": "Personal Vue reuseable components",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",

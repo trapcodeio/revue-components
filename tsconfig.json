@@ -14,7 +14,7 @@
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "declaration": true,
     /* Generates corresponding '.d.ts' file. */
-    "declarationDir": "./types",
+    "declarationDir": "./dist/types",
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
@@ -78,6 +78,7 @@
   },
 
   "exclude": [
-    "types"
+    "dist/types",
+    "vues"
   ]
 }
