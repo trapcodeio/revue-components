@@ -1,14 +1,14 @@
 import 'izitoast/dist/css/iziToast.css';
 // @ts-ignore
 import iziToast from "izitoast";
-
+// @ts-ignore
 iziToast.settings({
     position: 'topCenter'
-})
+});
 
 export default {
-    show(type, message, title, config) {
-        let data = {
+    show(type: string, message: string, title?: string, config?: any) {
+        let data: any = {
             message,
         };
 
@@ -20,17 +20,17 @@ export default {
                 ...config
             };
 
-        return iziToast[type](data)
+        return (iziToast as any)[type](data)
     },
-    success(message, title, config) {
+    success(message: string, title?: string, config?: any) {
         return this.show('success', message, title, config)
     },
 
-    info(message, title, config) {
+    info(message: string, title?: string, config?: any) {
         return this.show('info', message, title, config)
     },
 
-    error(message, title, config) {
+    error(message: string, title?: string, config?: any) {
         return this.show('error', message, title, config)
     }
 }
