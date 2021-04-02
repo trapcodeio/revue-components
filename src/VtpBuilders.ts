@@ -113,7 +113,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                 });
             },
 
-            reFetchData(resetData: true) {
+            reFetchData(resetData = true) {
                 if (resetData) {
                     this.vtp.loaded = false;
                     this.vtp.completed = false;
