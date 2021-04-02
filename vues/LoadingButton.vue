@@ -1,7 +1,9 @@
 <template>
   <button @click.prevent="onClick" :disabled="isLoading" :class="computedButtonClass">
     <span v-if="isLoading" class="blink">
-      <i class="fad fa-spinner-third fa-spin" aria-hidden="true"></i> {{ message || 'Loading' }}...</span>
+      <i class="fad fa-spinner-third fa-spin mr-0.5" aria-hidden="true"></i>
+      <template v-if="message">{{ message }}<span v-if="!noTripleDots">...</span></template>
+    </span>
     <slot v-else/>
   </button>
 </template>
@@ -15,8 +17,12 @@ export default {
   },
   props: {
     message: {
-      type: String,
+      type: [String, Boolean],
       default: 'Loading',
+    },
+    noTripleDots: {
+      type: Boolean,
+      default: false,
     },
     on: {
       type: String,
@@ -93,7 +99,7 @@ export default {
 
 <style scoped>
 .loading-button {
-  @apply py-2 px-4 rounded-sm font-medium text-white;
+  @apply py-1.5 px-4 rounded-sm font-medium text-white;
   @apply focus:outline-none;
 }
 </style>
