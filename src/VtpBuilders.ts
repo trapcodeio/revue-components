@@ -61,6 +61,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
         methods: {
             fetchData() {
                 let path = url;
+                let query: Record<string, any> = {};
                 let config: AxiosRequestConfig & { query?: Record<string, any> } | undefined = {};
 
                 if (typeof path === "function") {
@@ -71,13 +72,18 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
 
 
                 if (typeof path === "object") {
-                    config = (path as VtpRequest).config;
-                    path = (path as VtpRequest).url;
+                    config = path.config;
+
+                    if (path.query)
+                        query = path.query;
+
+                    // Switch path back to string
+                    path = path.url;
                 }
 
                 const requestHandler = this.$vtpRequestHandler ? this.$vtpRequestHandler : new VtpHttpRequest();
 
-                requestHandler!.get(path as string, config ? config.query : {}, config as any).then((res: any) => {
+                requestHandler!.get(path as string, query, config as any).then((res: any) => {
                     if (this.onVtpResponse) {
                         this.onVtpResponse({
                             data: res,
