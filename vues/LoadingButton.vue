@@ -17,7 +17,7 @@ export default {
   },
   props: {
     icon: {
-      type: "string",
+      type: String,
       default: "fad fa-spinner-third fa-spin mr-1"
     },
     message: {
