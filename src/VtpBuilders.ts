@@ -1,4 +1,3 @@
-import Vue from "vue";
 import VtpHttpRequest, {VtpHttpErrorResponse} from "./VtpHttpRequest";
 import {AxiosRequestConfig} from "axios";
 
@@ -47,7 +46,7 @@ interface VtpRequestMixin extends VtpMethods {
 }
 
 export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtpRequest), errorHandler?: (error: VtpHttpErrorResponse) => void | any) {
-    return Vue.extend({
+    return (<VtpRequestMixin>{
         data() {
             return {
                 vtp: {
@@ -132,7 +131,7 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                 this.fetchData()
             },
         }
-    })
+    }) as any
 }
 
 export {VtpHttpRequest}
