@@ -1,7 +1,7 @@
 <template>
   <button @click.prevent="onClick" :disabled="isLoading" :class="computedButtonClass">
     <span v-if="isLoading" class="blink">
-      <i class="fad fa-spinner-third fa-spin mr-0.5" aria-hidden="true"></i>
+      <i :class="icon" aria-hidden="true"></i>
       <template v-if="message">{{ message }}<span v-if="!noTripleDots">...</span></template>
     </span>
     <slot v-else/>
@@ -16,6 +16,10 @@ export default {
     event: 'on-switch',
   },
   props: {
+    icon: {
+      type: "string",
+      default: "fad fa-spinner-third fa-spin mr-1"
+    },
     message: {
       type: [String, Boolean],
       default: 'Loading',

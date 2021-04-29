@@ -47,7 +47,7 @@ interface VtpRequestMixin extends VtpMethods {
 }
 
 export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtpRequest), errorHandler?: (error: VtpHttpErrorResponse) => void | any) {
-    return Vue.extend(<VtpRequestMixin>{
+    return Vue.extend({
         data() {
             return {
                 vtp: {
@@ -82,10 +82,13 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                     path = path.url;
                 }
 
+                // @ts-ignore
                 const requestHandler = this.$vtpRequestHandler ? this.$vtpRequestHandler : new VtpHttpRequest();
 
                 requestHandler!.get(path as string, query, config as any).then((res: any) => {
+                    // @ts-ignore
                     if (this.onVtpResponse) {
+                        // @ts-ignore
                         this.onVtpResponse({
                             data: res,
                             config: config as StringOrVtpRequest,
@@ -93,18 +96,24 @@ export function newRequest(url: StringOrVtpRequest | ((self: any) => StringOrVtp
                                 this.vtp!.loaded = true;
                             }
                         });
-                    } else if (this.onVtpResponseLean) {
-                        this.onVtpResponseLean(res, {
-                            config: config as StringOrVtpRequest,
-                            markAsLoaded: () => {
-                                this.vtp!.loaded = true;
-                            }
-                        });
+                    } else {
+                        // @ts-ignore
+                        if (this.onVtpResponseLean) {
+                            // @ts-ignore
+                            this.onVtpResponseLean(res, {
+                                config: config as StringOrVtpRequest,
+                                markAsLoaded: () => {
+                                    this.vtp!.loaded = true;
+                                }
+                            });
+                        }
                     }
 
                     this.vtp.completed = true;
                 }).catch((error: any) => {
+                    // @ts-ignore
                     if (this.onVtpResponseError) {
+                        // @ts-ignore
                         this.onVtpResponseError(error);
                     } else if (errorHandler) {
                         errorHandler(error);
