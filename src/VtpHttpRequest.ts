@@ -77,7 +77,7 @@ export class VtpHttpRequest {
         );
     }
 
-    promisifyRequest(req: Promise<AxiosResponse>) {
+    promisifyRequest(req: Promise<AxiosResponse>): Promise<any> {
         return new Promise((resolve, reject) => {
             req.then((response) => {
                 if (response && typeof response.data === "object") {
