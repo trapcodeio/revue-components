@@ -1,16 +1,17 @@
 <template>
-  <span>{{ computedTime }}</span>
+  <span v-if="withBrackets">{{ computedTime }}</span>
+  <span v-else>({{ computedTime }})</span>
 </template>
 
 <script>
-import * as timeago from 'timeago.js';
+import {format} from 'timeago.js';
 
 export default {
   name: 'TimeAgoLite',
-  props: ['date'],
+  props: ['date', 'withBrackets'],
   computed: {
     computedTime() {
-      return timeago.format(this.date);
+      return format(this.date);
     }
   }
 }

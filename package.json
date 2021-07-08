@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/vue": "^2.0.0",
     "izitoast": "^1.4.0",
+    "timeago.js": "^4.0.2",
     "typescript": "^4.2.3",
     "vue": "^2.6.12"
   },
