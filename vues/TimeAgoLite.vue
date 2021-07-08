@@ -1,6 +1,6 @@
 <template>
-  <span v-if="withBrackets">{{ computedTime }}</span>
-  <span v-else>({{ computedTime }})</span>
+  <span v-if="withBrackets">({{ computedTime }})</span>
+  <span v-else>{{ computedTime }}</span>
 </template>
 
 <script>
