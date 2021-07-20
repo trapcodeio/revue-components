@@ -1,4 +1,4 @@
-import { Ref } from "vue";
+import {Ref} from "vue";
 
 /**
  * Toggles a ref.
@@ -18,9 +18,10 @@ export function toggleRef(ref: Ref<boolean>, set?: boolean) {
 /**
  * Returns a function that toggles a ref
  * @param ref
+ * @param set
  */
-export function toggleRefFn(ref: Ref<boolean>) {
-    return (set?: boolean) => toggleRef(ref, set);
+export function toggleRefFn(ref: Ref<boolean>, set?: boolean) {
+    return ($set?: boolean) => toggleRef(ref, set === undefined ? $set : set);
 }
 
 /**
