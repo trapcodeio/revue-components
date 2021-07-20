@@ -21,7 +21,7 @@ export function toggleRef(ref: Ref<boolean>, set?: boolean) {
  * @param set
  */
 export function toggleRefFn(ref: Ref<boolean>, set?: boolean) {
-    return ($set?: boolean) => toggleRef(ref, typeof $set === "boolean"  ? $set : set);
+    return ($set?: boolean | void) => toggleRef(ref, typeof $set === "boolean"  ? $set : set);
 }
 
 /**
