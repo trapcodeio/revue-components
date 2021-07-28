@@ -79,6 +79,6 @@
 
   "exclude": [
     "dist",
-    "vues"
+    "vues",
   ]
 }
