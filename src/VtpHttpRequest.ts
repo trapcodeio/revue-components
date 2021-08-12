@@ -46,31 +46,31 @@ export class VtpHttpRequest {
         return config;
     }
 
-    get(url: string, query?: Record<string, any>, options?: AxiosRequestConfig) {
+    get<T = any>(url: string, query?: Record<string, any>, options?: AxiosRequestConfig): Promise<T> {
         return this.promisifyRequest(
             this.axios.get(url, VtpHttpRequest.__getQueryConfig(query, options))
         );
     }
 
 
-    delete(url: string, query?: Record<string, any>, options?: AxiosRequestConfig) {
+    delete<T = any>(url: string, query?: Record<string, any>, options?: AxiosRequestConfig): Promise<T> {
         return this.promisifyRequest(
             this.axios.delete(url, VtpHttpRequest.__getQueryConfig(query, options))
         );
     }
 
 
-    post(url: string, data?: any, options?: AxiosRequestConfig) {
+    post<T = any>(url: string, data?: any, options?: AxiosRequestConfig): Promise<T> {
         return this.promisifyRequest(
             this.axios.post(url, data, options)
         );
     }
 
-    patch(url: string, data?: any, options?: AxiosRequestConfig) {
+    patch<T = any>(url: string, data?: any, options?: AxiosRequestConfig): Promise<T> {
         return this.sendVia('patch', url, data, options);
     }
 
-    sendVia(method: string, url: string, data?: any, options?: AxiosRequestConfig) {
+    sendVia<T>(method: string, url: string, data?: any, options?: AxiosRequestConfig): Promise<T> {
         return this.promisifyRequest(
             // @ts-ignore
             this.axios[method](url, data, options)
