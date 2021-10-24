@@ -2,7 +2,7 @@
   <button @click.prevent="onClick" :disabled="isLoading" :class="computedButtonClass">
     <span v-if="isLoading" class="blink">
       <i :class="icon" aria-hidden="true"></i>
-      <template v-if="message">{{ message }}<span v-if="!noTripleDots">...</span></template>
+      <span v-if="message">{{ message }}<span v-if="!noTripleDots">...</span></span>
     </span>
     <slot v-else/>
   </button>
