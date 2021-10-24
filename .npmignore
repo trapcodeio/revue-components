@@ -2,3 +2,5 @@
 node_modules
 # Ignore vue3 since it will be in dist folder.
 #vue3/*.ts
+
+*.log
