@@ -12,6 +12,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <pre v-if="isDev" class="text-xs my-10" v-text="data"></pre>
+  <pre v-if="isDev" class="text-xs my-10">
+    {{ data || undefined }}
+
+    <slot></slot>
+  </pre>
 </template>
 
