@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import { isDev } from "../vue3/utils";
+import {defineComponent} from "vue";
+import {isDev} from "../vue3/utils";
 
 // Convert object to json string
 export function processData(data: any, space: number = 2) {
@@ -15,7 +15,7 @@ export default defineComponent({
   props: ["data", "space"],
 
   setup() {
-    return { isDev, processData };
+    return {isDev, processData};
   }
 });
 </script>
