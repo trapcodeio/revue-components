@@ -12,7 +12,11 @@ export function processData(data: any, space: number = 2) {
 }
 
 export default defineComponent({
-  props: ["data", "space"],
+  props: {
+    data: {default: undefined},
+    space: {type: Number, default: 2},
+    id: {type: String, default: "debug"},
+  },
 
   setup() {
     return {isDev, processData};
@@ -22,7 +26,7 @@ export default defineComponent({
 
 <template>
   <template v-if="data">
-    <pre v-if="isDev" v-text="processData(data, space) || undefined"></pre>
+    <pre v-if="isDev" :id="id" v-text="processData(data, space) || undefined"></pre>
   </template>
   <slot v-else></slot>
 </template>
