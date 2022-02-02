@@ -16,6 +16,7 @@ export default defineComponent({
     data: {default: undefined},
     space: {type: Number, default: 2},
     id: {type: String, default: "debug"},
+    header: {type: String},
   },
 
   setup() {
@@ -25,8 +26,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <template v-if="data">
-    <pre v-if="isDev" :id="id" v-text="processData(data, space) || undefined"></pre>
+  <template v-if="isDev">
+    <template v-if="data">
+      <div :id="id">
+        <h6 v-if="header" :id="`${id}-header`" v-text="header"></h6>
+        <pre v-text="processData(data, space)"></pre>
+      </div>
+    </template>
+    <slot v-else></slot>
   </template>
-  <slot v-else></slot>
 </template>
