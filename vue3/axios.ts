@@ -1,6 +1,5 @@
-import {ref} from "vue";
-import {AxiosInstance} from "axios";
-
+import { ref } from "vue";
+import { AxiosInstance } from "axios";
 
 export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) {
     type promiseFn = ($clientSide: Client) => Promise<any>;
@@ -22,7 +21,7 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
             onError?: (error: any) => any;
         } = {}
     ) {
-        options = Object.assign({loading: true}, options);
+        options = Object.assign({ loading: true }, options);
 
         const data = ref<T>(options.def! as T);
         const loading = ref(options.loading !== false);
@@ -34,8 +33,9 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
             // Call the function
             try {
                 // if fn is string then we take it as a get request
-                if (typeof fn === 'string') {
-                    fn = (client) => client.get(fn as string);
+                if (typeof fn === "string") {
+                    const url = fn as string;
+                    fn = (client) => client.get(url);
                 }
 
                 const res = await fn($client);
