@@ -8,3 +8,6 @@ Declare in your shims-vue.d.ts
 ```ts
 declare module "revue-components/vues/*.vue";
 ```
+
+### Docs
+
