@@ -72,8 +72,12 @@ export class VtpHttpRequest {
 
     sendVia<T>(method: string, url: string, data?: any, options?: AxiosRequestConfig): Promise<T> {
         return this.promisifyRequest(
-            // @ts-ignore
-            this.axios[method](url, data, options)
+            this.axios.request({
+                method: method as any,
+                url,
+                data,
+                ...options
+            })
         );
     }
 
