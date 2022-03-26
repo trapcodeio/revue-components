@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { AxiosInstance } from "axios";
 
 export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) {
-    type promiseFn = ($clientSide: Client) => Promise<any>;
+    type promiseFn = ($clientSide: Client) => Promise<any> | string;
 
     /**
      * use Http function
@@ -37,6 +37,16 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
                     const url = fn as string;
                     fn = (client) => client.get(url);
                 }
+
+                // call function
+                const fnData = fn($client);
+
+                // If fnData is string we take it as a get request also
+                if (typeof fnData === "string") {
+                    const url = fnData as string;
+                    fn = (client) => client.get(url);
+                }
+
 
                 const res = await fn($client);
 
