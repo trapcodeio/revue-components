@@ -1,5 +1,5 @@
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import {isDev} from "../vue3/utils";
 
 // Convert object to json string
@@ -13,7 +13,7 @@ export function processData(data: any, space: number = 2) {
 
 export default defineComponent({
   props: {
-    data: {default: undefined},
+    data: {default: undefined} as PropType<Record<any, any> | undefined>,
     space: {type: Number, default: 2},
     id: {type: String, default: "debug"},
     header: {type: String},
