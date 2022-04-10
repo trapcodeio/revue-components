@@ -14,7 +14,7 @@ export function processData(data: any, space: number = 2) {
 export default defineComponent({
   props: {
     data: {
-      default: undefined,
+      default: {},
       type: Object as PropType<Record<any, any> | undefined>
     },
     space: {type: Number, default: 2},
