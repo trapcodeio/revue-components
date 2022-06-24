@@ -2,7 +2,7 @@ import {ref} from "vue";
 import {AxiosInstance} from "axios";
 
 export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) {
-    type promiseFn = ($clientSide: Client) => Promise<any> | string;
+    type promiseFn = ($clientSide: Client) => Promise<any> | string | false;
 
     /**
      * use Http function
@@ -39,7 +39,13 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
                 }
 
                 // call function
-                let fnData = fn($client) as (Promise<any> | string);
+                let fnData = fn($client) as (Promise<any> | string | false);
+
+                // stop request if it is false
+                if (fnData === false) {
+                    loading.value = false;
+                    return;
+                }
 
                 // If fnData is string we take it as a get request also
                 if (typeof fnData === "string") {
