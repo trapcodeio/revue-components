@@ -7,7 +7,6 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "npm run build",
     "build": "tsc -p tsconfig.json",
     "watch": "tsc -p tsconfig.json --watch"
   },
