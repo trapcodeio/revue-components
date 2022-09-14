@@ -4,3 +4,4 @@ node_modules
 #vue3/*.ts
 
 *.log
+dist
