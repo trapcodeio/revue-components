@@ -26,7 +26,7 @@ export function ifDev<T = any>(yes: T, no?: T) {
     return isDev && showDevValues.value ? yes : no;
 }
 
-export function turnOffDevValues(val: boolean = false) {
+export function turnOffDevValues(val: boolean = true) {
     showDevValues.value = !val;
 }
 
