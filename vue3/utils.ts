@@ -26,8 +26,8 @@ export function ifDev<T = any>(yes: T, no?: T) {
     return isDev && showDevValues.value ? yes : no;
 }
 
-export function turnOffDevValues() {
-    showDevValues.value = false;
+export function turnOffDevValues(val: boolean = false) {
+    showDevValues.value = val;
 }
 
 export function ifDevRun<T = any>(fn: () => T) {
