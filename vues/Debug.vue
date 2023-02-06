@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <template v-if="isDev || (!isDev && forceShow)">
+  <div v-if="isDev || (!isDev && forceShow)">
     <template v-if="data">
       <div :id="id">
         <h6 v-if="header" :id="`${id}-header`" v-text="header"></h6>
@@ -38,5 +38,5 @@ export default defineComponent({
       </div>
     </template>
     <slot v-else></slot>
-  </template>
+  </div>
 </template>
