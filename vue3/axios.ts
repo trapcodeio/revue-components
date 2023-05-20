@@ -1,4 +1,4 @@
-import {ref} from "vue";
+import {Ref, ref} from "vue";
 import {AxiosInstance} from "axios";
 
 export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) {
@@ -20,7 +20,7 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
             onLoad?: (data: T) => any;
             onError?: (error: any) => any;
         } = {}
-    ) {
+    ): [Ref<T>, () => Promise<void>, Ref<boolean>] {
         options = Object.assign({loading: true}, options);
 
         const data = ref<T>(options.def! as T);
@@ -74,7 +74,7 @@ export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) 
             loading.value = false;
         };
 
-        return [data, load, loading] as [typeof data, typeof load, typeof loading];
+        return [data as Ref<T>, load, loading];
     }
 
     return useAxios;
