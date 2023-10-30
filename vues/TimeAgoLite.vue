@@ -25,7 +25,7 @@ if(props.realtime) {
   }, {immediate: true});
 
   realTimeInterval.value = setInterval(() => {
-    realTimeValue.value = computedTime.value;
+    realTimeValue.value = format(props.date)
   }, props.realtimeInterval);
 
   onBeforeUnmount(() => {
