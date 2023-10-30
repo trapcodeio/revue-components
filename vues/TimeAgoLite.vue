@@ -3,20 +3,14 @@
   <span v-else>{{ computedTime }}</span>
 </template>
 
-<script>
+<script lang="ts" setup>
 import {format} from 'timeago.js';
+import {computed} from "vue";
 
-export default {
-  name: 'TimeAgoLite',
-  // props: ['date', 'withBrackets'],
-  props: {
-    date: { required: true},
-    withBrackets: {type: Boolean, default: false},
-  },
-  computed: {
-    computedTime() {
-      return format(this.date);
-    },
-  },
-};
+const props = defineProps({
+  date: {required: true, type: [Date, String, Number]},
+  withBrackets: {type: Boolean, default: false},
+});
+
+const computedTime = computed(() => format(props.date));
 </script>
