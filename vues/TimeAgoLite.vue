@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import {format} from 'timeago.js';
-import {computed, ref, watch, watchEffect} from "vue";
+import { computed, onBeforeUnmount, ref, watch } from "vue";
 
 const props = defineProps({
   date: {required: true, type: [Date, String, Number]},
@@ -17,14 +17,19 @@ const props = defineProps({
 
 const computedTime = computed(() => format(props.date));
 const realTimeValue = ref();
+const realTimeInterval = ref();
 
 if(props.realtime) {
   watch(computedTime, () => {
     realTimeValue.value = computedTime.value;
-  });
+  }, {immediate: true});
 
-  setInterval(() => {
+  realTimeInterval.value = setInterval(() => {
     realTimeValue.value = computedTime.value;
   }, props.realtimeInterval);
+
+  onBeforeUnmount(() => {
+    clearInterval(realTimeInterval.value);
+  });
 }
 </script>
