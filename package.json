@@ -1,6 +1,6 @@
 {
   "name": "revue-components",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Personal Vue reuse-able components",
   "repository": "https://github.com/trapcodeio/revue-components",
   "main": "index.ts",
