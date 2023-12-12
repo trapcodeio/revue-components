@@ -1,5 +1,5 @@
-import {Ref, ref} from "vue";
-import {AxiosInstance} from "axios";
+import {type Ref, ref} from "vue";
+import {type AxiosInstance} from "axios";
 
 export function makeAxiosFnUsing<Client extends AxiosInstance>($client: Client) {
     type promiseFn = ($clientSide: Client) => Promise<any> | string | false;
