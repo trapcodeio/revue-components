@@ -100,10 +100,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.loading-button {
-  @apply py-1.5 px-4 rounded-sm font-medium text-white;
-  @apply focus:outline-none;
-}
-</style>
