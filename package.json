@@ -11,10 +11,10 @@
     "watch": "tsc -p tsconfig.json --watch"
   },
   "devDependencies": {
-    "axios": "^1.6.0",
+    "axios": "^1.7.9",
     "izitoast": "^1.4.0",
     "timeago.js": "^4.0.2",
-    "typescript": "^5.2.2",
-    "vue": "^3.3.7"
+    "typescript": "^5.7.3",
+    "vue": "^3.5.13"
   }
 }
