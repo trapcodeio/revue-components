@@ -4,6 +4,7 @@
   "description": "Personal Vue reuse-able components",
   "repository": "https://github.com/trapcodeio/revue-components",
   "main": "index.ts",
+  "type": "module",
   "types": "index.d.ts",
   "license": "MIT",
   "scripts": {

@@ -1,5 +1,5 @@
-import VtpHttpRequest, {VtpHttpErrorResponse} from "./VtpHttpRequest";
-import {AxiosRequestConfig} from "axios";
+import VtpHttpRequest, {type VtpHttpErrorResponse} from "./VtpHttpRequest";
+import type {AxiosRequestConfig} from "axios";
 
 export type VtpRequest = {
     name?: string
