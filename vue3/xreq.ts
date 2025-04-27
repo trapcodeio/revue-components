@@ -20,6 +20,27 @@ export type XReq<Client> = <T = any>(
     options?: UseXReqOptions<T>
 ) => XReqResult<T>
 
+
+/**
+ * Creates an XReq instance for handling HTTP requests within a specific context. This function is particularly suited for managing stateful and reactive interactions involving HTTP requests and responses.
+ *
+ * @param sender The client object used to send requests.
+ * @param opts Configuration options for handling requests, such as custom handlers or default behaviors.
+ * @return A function `useReq` that can be used to make HTTP requests and manage their state. The returned function provides reactive data, a loading state, and a function to execute the request.
+ *
+ * @example
+ * // Create an instance
+ * const api = MakeXReq(yourHttpClient, {
+ *      // handleString is where you define how to handle a string as a request.
+ *     handleString: (url: string) => yourHttpClient.get(url)
+ * })
+ *
+ * // Use it
+ * const [response, load, loading] = api<{ foo: string }>("/path/to/api")
+ * // response - is a reactive object that contains the response data
+ * // load - is a function that executes the request
+ * // loading - is a reactive boolean that indicates whether the request is loading
+ */
 export function MakeXReq<Client>(sender: Client, opts: MakeXReqOptions): XReq<Client> {
 
     /**
